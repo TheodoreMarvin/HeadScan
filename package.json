@@ -1,0 +1,11 @@
+{
+  "name": "headscan",
+  "version": "1.0.0",
+  "description": "HeadScan checks websites for missing security headers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Theodore Marvin Hendrawan",
+  "license": "ISC"
+}
