@@ -9,6 +9,7 @@
   "author": "Theodore Marvin Hendrawan",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "table": "^6.9.0"
   }
 }

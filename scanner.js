@@ -1,15 +1,15 @@
 const axios = require('axios')
+const { table } = require('table')
 
 class HeadScan {
     constructor() {
         this.securityHeaders = {
-            'Content-Security-Policy': 'Prevents XSS attacks',
             'Strict-Transport-Security': 'Enforces HTTPS', 
             'X-Frame-Options': 'Prevents clickjacking',
             'X-Content-Type-Options': 'Prevents MIME sniffing',
+            'Content-Security-Policy': 'Prevents XSS attacks',
             'Referrer-Policy': 'Controls referrer information',
-            'Permissions-Policy': 'Controls browser features',
-            'X-XSS-Protection': 'Legacy XSS protection'
+            'Permissions-Policy': 'Controls browser features'
         };
     }
 
@@ -69,6 +69,33 @@ class HeadScan {
         results.grade = this.calculateGrade(results.score);
 
         return results;
+    }
+
+    displayResults(results) {
+        const result_table = [[
+            'URL',
+            'Found',
+            'Missing'
+        ]];
+
+        results.forEach(result => {
+            if (result.error) {
+                result_table.push([
+                    result.url,
+                    'Error',
+                    result.error
+                ]);
+            }
+            else {
+                result_table.push([
+                    result.url,
+                    Object.keys(result.headersFound).length,
+                    result.missingHeaders.length
+                ]);
+            }
+        });
+
+        console.log(table(result_table));
     }
 }
 
